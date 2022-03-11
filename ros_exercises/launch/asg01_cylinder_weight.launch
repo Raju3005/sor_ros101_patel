@@ -1,0 +1,7 @@
+<launch>
+
+    <node name="radius_squarer" pkg="ros_exercises" type="radius_squarer"/>
+    <node name="cylinder_calc" pkg="ros_exercises" type="cylinder_calc"/>
+    <node name="cylinder_weight" pkg="ros_exercises" type="cylinder_weight"/>
+
+</launch>
