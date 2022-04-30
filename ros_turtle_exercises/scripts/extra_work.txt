@@ -1,0 +1,188 @@
+/*void run_turtle(){ ////////////////////////////////////////////////////        Rough Work         ///////////////////////////////
+
+    geometry_msgs::Twist msg;
+
+    alpha = atan((pos_y-pose_y.data)/(pos_x-pose_x.data));
+
+    if(pose_x.data<target_pos_x)
+    {
+        msg.linear.x = 0.3;
+        //msg.angular.z = alpha*(180/3.14);
+        guide_turtle_to_xy_pub.publish(msg);
+        //std::cout<<"Current position at X is:" << pose_x.data;
+        ROS_INFO("Current position at X is: %f ",pose_x.data);
+        //ROS_INFO("Current position at X is: %f ",alpha);
+
+        if(pose_x.data>pos_x)
+        {
+            msg.linear.x = 0.0;
+            //msg.angular.z = 0.0;
+            guide_turtle_to_xy_pub.publish(msg);
+            ROS_INFO("Current position at X is: %f ",pose_x.data);
+        }
+
+            if(pose_y.data<target_pos_y)
+            {
+                msg.linear.y = 0.3;
+                //msg.angular.z = 0.0;
+                guide_turtle_to_xy_pub.publish(msg);
+                ROS_INFO("Current position at Y is: %f ",pose_y.data);
+
+                if(pose_y.data>pos_y)
+                {
+                    msg.linear.y = 0.0;
+                    //msg.angular.z = 0.0;
+                    guide_turtle_to_xy_pub.publish(msg);
+                    ROS_INFO("Current position at Y is: %f ",pose_y.data);
+                }
+            }
+            else if(pose_y.data>target_pos_y)
+            {
+                msg.linear.y = -0.3;
+                msg.angular.z = 0.0;
+                guide_turtle_to_xy_pub.publish(msg);
+                ROS_INFO("Current position at Y is: %f ",pose_y.data);
+
+                if(pose_y.data<pos_y)
+                {
+                    msg.linear.y = 0.0;
+                    msg.angular.z = 0.0;
+                    guide_turtle_to_xy_pub.publish(msg);
+                    ROS_INFO("Current position at Y is: %f ",pose_y.data);
+                }
+
+            }
+            
+    }
+
+    else if (pose_x.data>target_pos_x)
+    {
+        msg.linear.x = -0.3;
+        msg.angular.z = 0.0;
+        guide_turtle_to_xy_pub.publish(msg);
+        ROS_INFO("Current position at X is: %f ",pose_x.data);
+
+        if(pose_x.data<pos_x)
+        {
+            msg.linear.x = 0.0;
+            msg.angular.z = 0.0;
+            guide_turtle_to_xy_pub.publish(msg);
+            ROS_INFO("Current position at X is: %f ",pose_x.data);
+
+            if(pose_y.data>target_pos_y)
+            {
+                msg.linear.y = -0.3;
+                msg.angular.z = 0.0;
+                guide_turtle_to_xy_pub.publish(msg);
+                ROS_INFO("Current position at Y is: %f ",pose_y.data);
+            }
+                if(pose_y.data<pos_y)
+                {
+                    msg.linear.y = 0.0;
+                    msg.angular.z = 0.0;
+                    guide_turtle_to_xy_pub.publish(msg);
+                    ROS_INFO("Current position at Y is: %f ",pose_y.data);
+                }
+
+            }
+            else if(pose_y.data<target_pos_y)
+            {
+                msg.linear.y = 0.3;
+                msg.angular.z = 0.0;
+                guide_turtle_to_xy_pub.publish(msg);
+                ROS_INFO("Current position at Y is: %f ",pose_y.data);
+
+                if(pose_y.data>pos_y)
+                {
+                    msg.linear.y = 0.0;
+                    msg.angular.z = 0.0;
+                    guide_turtle_to_xy_pub.publish(msg);
+                    ROS_INFO("Current position at Y is: %f ",pose_y.data);
+                }
+
+            }
+        
+    }
+
+   /* if(pose_y.data<target_pos_y)
+    {
+        msg.linear.y = 0.3;
+        msg.angular.z = 0.0;
+        guide_turtle_to_xy_pub.publish(msg);
+   // }*/
+//}
+
+/*void run_turtle(){
+
+    geometry_msgs::Twist msg;
+    
+
+    ///ROS_INFO("Current angle is: %f ",pose_theta.data);
+
+    alpha = atan((pos_y-pose_y.data)/(pos_x-pose_x.data));
+    
+   /* if(pose_theta.data<=(alpha-0.1))
+    {
+
+        msg.angular.z = 0.1;
+        guide_turtle_to_xy_pub.publish(msg);
+
+    
+       /* if(pose_theta.data>alpha)
+        {
+            msg.angular.z = -0.0;
+            guide_turtle_to_xy_pub.publish(msg);
+        }
+    //}
+    //ros::Duration(1).sleep();
+
+    if(pose_theta.data<(alpha-0.1))
+    {
+        msg.angular.z = 0.1;
+        guide_turtle_to_xy_pub.publish(msg);
+        ROS_INFO("Current angle is: %f ",alpha);
+    }
+   /* if(pose_theta.data>=alpha && i==0)
+    {
+            i=1;
+            //ros::Duration(1).sleep();
+            std::cout<< i << std::endl;
+    }
+    */
+    
+   /* if(pose_x.data<target_pos_x && i==1)
+    {
+        msg.linear.x = 0.3;
+        //msg.angular.z = alpha*(180/3.14);
+        guide_turtle_to_xy_pub.publish(msg);
+        //std::cout<<"Current position at X is:" << pose_x.data;
+        ROS_INFO("Current position at X is: %f ",pose_x.data);
+        ROS_INFO("Current angle is: %f ",alpha);
+
+        if(pose_x.data>pos_x)
+        {
+            msg.linear.x = 0.0;
+            //msg.angular.z = 0.0;
+            guide_turtle_to_xy_pub.publish(msg);
+            ROS_INFO("Current position at X is: %f ",pose_x.data);
+            //i=0;
+        }
+    }
+
+    else if (pose_x.data>target_pos_x)
+    {
+        msg.linear.x = -0.3;
+        //msg.angular.z = 0.0;
+        guide_turtle_to_xy_pub.publish(msg);
+        ROS_INFO("Current position at X is: %f ",pose_x.data);
+
+        if(pose_x.data<pos_x)
+        {
+            msg.linear.x = 0.0;
+            //msg.angular.z = 0.0;
+            guide_turtle_to_xy_pub.publish(msg);
+            ROS_INFO("Current position at X is: %f ",pose_x.data);
+        }
+    }
+
+}*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
